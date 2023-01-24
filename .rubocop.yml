@@ -1,0 +1,76 @@
+# docs can be found at;
+# - Core (most cops) https://docs.rubocop.org/en/stable/
+# - Rails https://docs.rubocop.org/projects/rails/en/stable/cops_rails/
+
+require:
+  - standard
+  - ./rubocop/rubocop
+  - rubocop-rails
+  - rubocop-rspec
+
+inherit_gem:
+  standard: config/base.yml
+
+AllCops:
+  NewCops: disable
+  TargetRubyVersion: 2.7
+  Exclude:
+    - ./utilities/**/*
+    - ./vendor/**/*
+    - ./db/**/*
+    - ./node_modules/**/*
+    - ./test/models/**/*
+    - ./test/functional/**/*
+    - ./test/unit/**/*
+    - ./bin/*
+    - ./sorbet/tapioca/require.rb
+  DefaultFormatter: progress
+
+GraphQL/ArgumentDescription:
+  Enabled: false
+GraphQL/FieldDescription:
+  Enabled: false
+GraphQL/ExtractInputType:
+  Include:
+    - 'graphql/mutations/**/*.rb'
+
+Rails/ActionFilter:
+  Enabled: true
+  Include:
+    - "app/controllers/**/*.rb"
+    - "packages/*/app/controllers/**/*.rb"
+Rails/Exit:
+  Exclude:
+    - ./config/deploy.rb
+Rails/HttpPositionalArguments:
+  Enabled: true
+  Include:
+    - "spec/**/*"
+    - "packages/*/spec/**/*"
+Rails/UnknownEnv:
+  Environments:
+    - development
+    - production
+    - sandbox
+    - staging
+    - test
+
+RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/DescribedClass:
+  Enabled: false
+  EnforcedStyle: explicit
+RSpec/ExampleLength:
+  Enabled: true
+  Max: 20
+  Severity: warning
+RSpec/FactoryBot/AttributeDefinedStatically:
+  Enabled: true
+  Include:
+    - test/factories/**/*.rb
+    - spec/factories/**/*.rb
+    - packages/**/spec/factories/**/*.rb
+RSpec/PreferSpecHelper:
+  Enabled: true
+  Include:
+    - spec/rubocop/**/*

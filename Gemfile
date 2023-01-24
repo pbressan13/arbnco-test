@@ -22,6 +22,9 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem "simple_form", github: "heartcombo/simple_form"
+gem "sassc-rails" # Uncomment this line
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -31,6 +34,21 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "rspec_junit_formatter", "~> 0.4.1"
+
+  gem "rubocop", "1.32.0", require: false
+  gem "rubocop-git", git: "https://github.com/justworkshr/rubocop-git.git", branch: "master", require: false
+  gem "rubocop-rails", "2.13.2", require: false
+  gem "rubocop-rspec", "2.8.0", require: false
+  gem "debug", "~> 1.7"
+  gem "pry", "~> 0.13"
+  gem "pry-byebug", "~> 3.9" # adds step debugging support to Pry (via Byebug)
+  gem "pry-rails", "~> 0.3.9" # sets Pry as Rails's default console REPL (vs Irb)
+
+  gem "rspec-core", "~> 3.10.2" # this dependency was explicitly enforced to avoid conflicts with rspec-rails 5.1
+  gem "rspec-rails", "~> 5.1" # Replaces Rails's default testing framework with RSpec.
+
+  gem "database_cleaner", "1.5.3" # Cleans database between mini test runs
 end
 
 group :development do
