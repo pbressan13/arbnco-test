@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_27_183327) do
+ActiveRecord::Schema.define(version: 2023_01_27_222927) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -43,16 +43,20 @@ ActiveRecord::Schema.define(version: 2023_01_27_183327) do
     t.string "alt_sys_consider"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "file_upload_id", null: false
+    t.index ["file_upload_id"], name: "index_compliances_on_file_upload_id"
   end
 
   create_table "constructions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "type"
+    t.string "construction_type"
     t.float "u_value"
     t.boolean "u_value_corr"
     t.string "cm"
     t.boolean "metal_cladding"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "file_upload_id", null: false
+    t.index ["file_upload_id"], name: "index_constructions_on_file_upload_id"
   end
 
   create_table "dhw_generators", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -63,14 +67,18 @@ ActiveRecord::Schema.define(version: 2023_01_27_183327) do
     t.boolean "store_system"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "file_upload_id", null: false
+    t.index ["file_upload_id"], name: "index_dhw_generators_on_file_upload_id"
   end
 
   create_table "doors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.float "area"
     t.string "construction"
-    t.string "type"
+    t.string "door_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "file_upload_id", null: false
+    t.index ["file_upload_id"], name: "index_doors_on_file_upload_id"
   end
 
   create_table "file_uploads", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -78,6 +86,8 @@ ActiveRecord::Schema.define(version: 2023_01_27_183327) do
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "general_id"
+    t.index ["general_id"], name: "index_file_uploads_on_general_id"
   end
 
   create_table "generals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -130,6 +140,8 @@ ActiveRecord::Schema.define(version: 2023_01_27_183327) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "fieldname"
+    t.bigint "file_upload_id", null: false
+    t.index ["file_upload_id"], name: "index_generals_on_file_upload_id"
   end
 
   create_table "glasses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -138,11 +150,13 @@ ActiveRecord::Schema.define(version: 2023_01_27_183327) do
     t.string "lig_sol_trans"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "file_upload_id", null: false
+    t.index ["file_upload_id"], name: "index_glasses_on_file_upload_id"
   end
 
   create_table "hvac_systems", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "isbem_id"
-    t.string "type"
+    t.string "hvac_system_type"
     t.string "heat_source"
     t.boolean "chp"
     t.string "fuel_type"
@@ -170,6 +184,8 @@ ActiveRecord::Schema.define(version: 2023_01_27_183327) do
     t.boolean "weather_comp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "file_upload_id", null: false
+    t.index ["file_upload_id"], name: "index_hvac_systems_on_file_upload_id"
   end
 
   create_table "rec_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -178,11 +194,13 @@ ActiveRecord::Schema.define(version: 2023_01_27_183327) do
     t.string "rec_comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "file_upload_id", null: false
+    t.index ["file_upload_id"], name: "index_rec_users_on_file_upload_id"
   end
 
   create_table "walls", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "multiplier"
-    t.string "type"
+    t.string "wall_type"
     t.string "type_env"
     t.float "length"
     t.integer "pitch"
@@ -191,6 +209,8 @@ ActiveRecord::Schema.define(version: 2023_01_27_183327) do
     t.string "construction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "file_upload_id", null: false
+    t.index ["file_upload_id"], name: "index_walls_on_file_upload_id"
   end
 
   create_table "windows", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -204,6 +224,8 @@ ActiveRecord::Schema.define(version: 2023_01_27_183327) do
     t.string "glass"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "file_upload_id", null: false
+    t.index ["file_upload_id"], name: "index_windows_on_file_upload_id"
   end
 
   create_table "zones", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -253,7 +275,21 @@ ActiveRecord::Schema.define(version: 2023_01_27_183327) do
     t.boolean "night_cooling"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "file_upload_id", null: false
+    t.index ["file_upload_id"], name: "index_zones_on_file_upload_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "compliances", "file_uploads"
+  add_foreign_key "constructions", "file_uploads"
+  add_foreign_key "dhw_generators", "file_uploads"
+  add_foreign_key "doors", "file_uploads"
+  add_foreign_key "file_uploads", "generals"
+  add_foreign_key "generals", "file_uploads"
+  add_foreign_key "glasses", "file_uploads"
+  add_foreign_key "hvac_systems", "file_uploads"
+  add_foreign_key "rec_users", "file_uploads"
+  add_foreign_key "walls", "file_uploads"
+  add_foreign_key "windows", "file_uploads"
+  add_foreign_key "zones", "file_uploads"
 end

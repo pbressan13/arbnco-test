@@ -1,4 +1,7 @@
 class General < ApplicationRecord
-  has_one :file_upload, dependent: :destroy
-  validates :sbem_project, presence: true
+  belongs_to :file_upload
+
+  def self.file_upload
+    FileUpload.find(file_upload_id)
+  end
 end
