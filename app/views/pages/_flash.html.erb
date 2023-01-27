@@ -1,0 +1,16 @@
+<div id="flash_messages">
+<% if !flash.empty? %>
+  <% flash.each do |key, value| %>
+    <% if value && !value.empty? && ['success', 'error', 'notice', 'warning'].include?(key) %>
+      <div class="flash <%= key %>">
+        <div>
+          <div class="flash-inner">
+            <%= value %>
+          </div>
+          <span><%= image_tag 'x-black.svg' %></span>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+</div>

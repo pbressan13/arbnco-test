@@ -3,13 +3,9 @@
 # - Rails https://docs.rubocop.org/projects/rails/en/stable/cops_rails/
 
 require:
-  - standard
-  - ./rubocop/rubocop
   - rubocop-rails
   - rubocop-rspec
-
-inherit_gem:
-  standard: config/base.yml
+  - rubocop-thread_safety
 
 AllCops:
   NewCops: disable
@@ -19,20 +15,15 @@ AllCops:
     - ./vendor/**/*
     - ./db/**/*
     - ./node_modules/**/*
-    - ./test/models/**/*
-    - ./test/functional/**/*
-    - ./test/unit/**/*
+    - "test/**/*"
     - ./bin/*
-    - ./sorbet/tapioca/require.rb
+    - "config/**/*"
+    - "script/**/*"
+    - "bin/{rails,rake}"
+    - "spec/fixtures/**/*"
+    - "tmp/**/*"
+    - "app/helpers/**/*"
   DefaultFormatter: progress
-
-GraphQL/ArgumentDescription:
-  Enabled: false
-GraphQL/FieldDescription:
-  Enabled: false
-GraphQL/ExtractInputType:
-  Include:
-    - 'graphql/mutations/**/*.rb'
 
 Rails/ActionFilter:
   Enabled: true
@@ -54,6 +45,15 @@ Rails/UnknownEnv:
     - sandbox
     - staging
     - test
+    - payroll_test
+    - payroll_stress_test
+    - price
+    - learn
+    - echo
+    - demo
+    - benx
+    - mobile
+    - pen
 
 RSpec/MultipleExpectations:
   Enabled: false
@@ -70,7 +70,9 @@ RSpec/FactoryBot/AttributeDefinedStatically:
     - test/factories/**/*.rb
     - spec/factories/**/*.rb
     - packages/**/spec/factories/**/*.rb
-RSpec/PreferSpecHelper:
-  Enabled: true
-  Include:
-    - spec/rubocop/**/*
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false

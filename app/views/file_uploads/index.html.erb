@@ -1,0 +1,21 @@
+<div class="container mt-3">
+  <h2><strong>Files</strong></h2>
+  <div class="cards">
+    <% @file_uploads.each do |file_upload| %>
+      <div class="card-file_upload">
+        <div class="card-file_upload-right d-flex align-items-start flex-column">
+          <div class="card-file_upload-right-name">
+            <h2>
+              <%= file_upload.file_name.truncate(50) %>
+            </h2>
+          </div>
+          <div class="card-file_upload-right-email">
+            <p>
+              <%= file_upload.email %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

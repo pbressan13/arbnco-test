@@ -38,3 +38,4 @@ sample_input_files/
 model.inp
 model-2.inp
 .gitignore
+.env*

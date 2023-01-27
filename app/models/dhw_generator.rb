@@ -1,0 +1,2 @@
+class DhwGenerator < ApplicationRecord
+end

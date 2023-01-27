@@ -1,0 +1,2 @@
+class HvacSystem < ApplicationRecord
+end
