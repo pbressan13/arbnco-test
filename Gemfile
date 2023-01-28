@@ -5,8 +5,6 @@ ruby '2.7.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.0.6', '>= 6.0.6.1'
-# Use mysql as the database for Active Record
-gem 'mysql2', '>= 0.4.4'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
@@ -18,7 +16,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+ gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -37,6 +35,8 @@ gem "sidekiq"
 gem "sidekiq-failures", "~> 1.0"
 
 group :development, :test do
+  # Use mysql as the database for Active Record
+  gem 'mysql2', '>= 0.4.4'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'standard', require: false
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
