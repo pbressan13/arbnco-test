@@ -5,7 +5,15 @@ class FileUpload < ApplicationRecord
   validates :file_name, presence: true
   validates :email, presence: true
 
+  after_commit :async_update
+
   def self.general
     General.find(general_id)
+  end
+
+  private
+
+  def async_update
+    ImportFileUploadJob.perform_now(self)
   end
 end
