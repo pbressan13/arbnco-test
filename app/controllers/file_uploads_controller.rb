@@ -13,6 +13,7 @@ class FileUploadsController < ApplicationController
     @file_upload = FileUpload.new(file_name: file_name, email: email, file: file)
 
     if @file_upload.save
+      ImportFileUploadJob.perform_now(@file_upload)
       redirect_to file_uploads_path
     else
       render :new

@@ -25,6 +25,8 @@ gem 'simple_form', github: 'heartcombo/simple_form'
 
 gem 'database_cleaner', '1.5.3' # Cleans database between mini test runs
 gem 'sendgrid-ruby' # Sendgrid API
+gem 'rails_12factor'
+gem 'pg', '>= 0.4.4'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -35,8 +37,7 @@ gem 'sidekiq', '~> 6.3', '>= 6.3.1'
 gem 'sidekiq-failures', '~> 1.0', '>= 1.0.1'
 
 group :development, :test do
-  # Use mysql as the database for Active Record
-  gem 'mysql2', '>= 0.4.4'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'standard', require: false
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -66,8 +67,7 @@ group :test do
 end
 
 group :production do
-  gem 'rails_12factor'
-  gem 'pg'
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2023_01_27_222927) do
 
-  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 2023_01_27_222927) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "active_storage_blobs", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -33,7 +36,7 @@ ActiveRecord::Schema.define(version: 2023_01_27_222927) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "compliances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "compliances", force: :cascade do |t|
     t.string "epc_type"
     t.boolean "eng_heritage"
     t.string "br_stage"
@@ -47,7 +50,7 @@ ActiveRecord::Schema.define(version: 2023_01_27_222927) do
     t.index ["file_upload_id"], name: "index_compliances_on_file_upload_id"
   end
 
-  create_table "constructions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "constructions", force: :cascade do |t|
     t.string "construction_type"
     t.float "u_value"
     t.boolean "u_value_corr"
@@ -59,7 +62,7 @@ ActiveRecord::Schema.define(version: 2023_01_27_222927) do
     t.index ["file_upload_id"], name: "index_constructions_on_file_upload_id"
   end
 
-  create_table "dhw_generators", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "dhw_generators", force: :cascade do |t|
     t.integer "isbem_id"
     t.string "heat_gen_type"
     t.integer "dhw_gen_seff"
@@ -71,7 +74,7 @@ ActiveRecord::Schema.define(version: 2023_01_27_222927) do
     t.index ["file_upload_id"], name: "index_dhw_generators_on_file_upload_id"
   end
 
-  create_table "doors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "doors", force: :cascade do |t|
     t.float "area"
     t.string "construction"
     t.string "door_type"
@@ -81,7 +84,7 @@ ActiveRecord::Schema.define(version: 2023_01_27_222927) do
     t.index ["file_upload_id"], name: "index_doors_on_file_upload_id"
   end
 
-  create_table "file_uploads", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "file_uploads", force: :cascade do |t|
     t.string "file_name"
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
@@ -90,7 +93,7 @@ ActiveRecord::Schema.define(version: 2023_01_27_222927) do
     t.index ["general_id"], name: "index_file_uploads_on_general_id"
   end
 
-  create_table "generals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "generals", force: :cascade do |t|
     t.string "b_type"
     t.string "weather"
     t.string "p_name"
@@ -144,7 +147,7 @@ ActiveRecord::Schema.define(version: 2023_01_27_222927) do
     t.index ["file_upload_id"], name: "index_generals_on_file_upload_id"
   end
 
-  create_table "glasses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "glasses", force: :cascade do |t|
     t.string "u_value"
     t.string "tot_sol_trans"
     t.string "lig_sol_trans"
@@ -154,7 +157,7 @@ ActiveRecord::Schema.define(version: 2023_01_27_222927) do
     t.index ["file_upload_id"], name: "index_glasses_on_file_upload_id"
   end
 
-  create_table "hvac_systems", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "hvac_systems", force: :cascade do |t|
     t.integer "isbem_id"
     t.string "hvac_system_type"
     t.string "heat_source"
@@ -188,7 +191,7 @@ ActiveRecord::Schema.define(version: 2023_01_27_222927) do
     t.index ["file_upload_id"], name: "index_hvac_systems_on_file_upload_id"
   end
 
-  create_table "rec_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "rec_users", force: :cascade do |t|
     t.string "code"
     t.string "user_in_out"
     t.string "rec_comment"
@@ -198,7 +201,7 @@ ActiveRecord::Schema.define(version: 2023_01_27_222927) do
     t.index ["file_upload_id"], name: "index_rec_users_on_file_upload_id"
   end
 
-  create_table "walls", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "walls", force: :cascade do |t|
     t.integer "multiplier"
     t.string "wall_type"
     t.string "type_env"
@@ -213,7 +216,7 @@ ActiveRecord::Schema.define(version: 2023_01_27_222927) do
     t.index ["file_upload_id"], name: "index_walls_on_file_upload_id"
   end
 
-  create_table "windows", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "windows", force: :cascade do |t|
     t.integer "multiplier"
     t.float "area"
     t.integer "dev_proj_ratio"
@@ -228,7 +231,7 @@ ActiveRecord::Schema.define(version: 2023_01_27_222927) do
     t.index ["file_upload_id"], name: "index_windows_on_file_upload_id"
   end
 
-  create_table "zones", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "zones", force: :cascade do |t|
     t.integer "isbem_id"
     t.integer "activity"
     t.string "activity_name"
