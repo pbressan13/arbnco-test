@@ -5,7 +5,8 @@ class FileUploadMailer < ApplicationMailer
   DOMAIN = ENV['MAILGUN_DOMAIN']
   API_URL = "https://api:#{API_KEY}@api.mailgun.net/v2/#{DOMAIN}"
 
-  def send_mail(file_upload)
+  def self.send_mail(file_upload)
+    Rails.logger.info "Sending email to #{file_upload.email}"
     RestClient.post API_URL + '/messages',
                     from: 'arbnco-test@arbnco-test.com',
                     to: file_upload.email,
