@@ -4,15 +4,19 @@
     <% @file_uploads.each do |file_upload| %>
       <div class="card-file_upload">
         <div class="card-file_upload-right d-flex align-items-start flex-column">
-          <div class="card-file_upload-right-name">
-            <h2>
-              <%= file_upload.file_name.truncate(50) %>
-            </h2>
-          </div>
           <div class="card-file_upload-right-email">
-            <p>
-              <%= file_upload.email %>
-            </p>
+          <table>
+            <tr>
+              <td>
+                <p>
+                  File imported <%= file_upload.file_name.truncate(50) %> by <%= file_upload.email %>
+                </p>
+              </td>
+              <td>
+                <% if file_upload.general.present? %>
+                  <%= link_to "Show", file_upload_path(file_upload), class: "btn btn-primary" %>
+                <% end %>
+              </td>
           </div>
         </div>
       </div>

@@ -9,5 +9,9 @@ class ImportFileUploadJob < ApplicationJob
     general = objects_created.select { |object| object.instance_of?(::General) }.first
     file_upload.general_id = general.id
     file_upload.save
+
+    return unless general.present?
+
+    FileUploadMailer.send_mail(file_upload)
   end
 end

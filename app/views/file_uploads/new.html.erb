@@ -2,7 +2,7 @@
   <h1>Import a file:</h1>
  <%= simple_form_for [@file_upload ] do |f| %>
   <%= f.input :email,  label: "Email" %>
-  <%= f.input :file, as: :file, label: "Arquivo" %>
+  <%= f.input :file, as: :file %>
   <div class="row mt-3 ml-1">
     <%= f.submit "Confirm", class: "btn btn-primary" %>
     <%= link_to 'Go Back', root_path, class: "btn btn-secondary" %>

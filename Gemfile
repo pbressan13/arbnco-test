@@ -27,7 +27,7 @@ gem 'database_cleaner', '1.5.3' # Cleans database between mini test runs
 gem 'sendgrid-ruby' # Sendgrid API
 gem 'rails_12factor'
 gem 'pg', '>= 0.4.4'
-
+gem 'rest-client'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

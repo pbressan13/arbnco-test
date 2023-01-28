@@ -1,0 +1,13 @@
+<div class="container mt-3">
+  <div class="cards">
+  <h2>FileName: <%= @file_upload.file_name %> </h2>
+    <% @array_objects.each do |object| %>
+        <h2><%= object.first.class.name %> </h2>
+        <% object.each do |model| %>
+          <% model.attributes.each do |key, value| %>
+            <p><%= key %> = <%= value %></p>
+          <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

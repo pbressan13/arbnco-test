@@ -24,6 +24,23 @@ class FileUploadsController < ApplicationController
     @file_uploads = FileUpload.all
   end
 
+  def show
+    @file_upload = FileUpload.find(params[:id])
+    @array_objects = []
+    @general = [@file_upload.general]
+    @rec_user = RecUser.where(file_upload_id: @file_upload.id).to_a
+    @glass = Glass.where(file_upload_id: @file_upload.id).to_a
+    @zone = Zone.where(file_upload_id: @file_upload.id).to_a
+    @door = Door.where(file_upload_id: @file_upload.id).to_a
+    @dhw_generator = DhwGenerator.where(file_upload_id: @file_upload.id).to_a
+    @wall = Wall.where(file_upload_id: @file_upload.id).to_a
+    @construction = Construction.where(file_upload_id: @file_upload.id).to_a
+    @hvac_system = HvacSystem.where(file_upload_id: @file_upload.id).to_a
+    @compliance = Compliance.where(file_upload_id: @file_upload.id).to_a
+    @window = Window.where(file_upload_id: @file_upload.id).to_a
+    @array_objects << @general << @rec_user << @glass << @zone << @door << @dhw_generator << @wall << @construction << @hvac_system << @compliance << @window
+  end
+
   private
 
   def file_upload_params

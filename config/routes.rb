@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
-  resources :file_uploads, only: %i[index new create]
+  resources :file_uploads, only: %i[index new create show]
   resources :general, only: [:index] do
     collection do
       post :import
