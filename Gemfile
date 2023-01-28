@@ -31,8 +31,8 @@ gem 'sendgrid-ruby' # Sendgrid API
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
-gem "sidekiq"
-gem "sidekiq-failures", "~> 1.0"
+gem 'sidekiq', '~> 6.3', '>= 6.3.1'
+gem 'sidekiq-failures', '~> 1.0', '>= 1.0.1'
 
 group :development, :test do
   # Use mysql as the database for Active Record
