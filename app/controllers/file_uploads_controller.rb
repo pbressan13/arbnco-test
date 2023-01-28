@@ -13,12 +13,6 @@ class FileUploadsController < ApplicationController
     @file_upload = FileUpload.new(file_name: file_name, email: email, file: file)
 
     if @file_upload.save
-      # call the import method from the general controller
-      objects_created = HelperController.import(@file_upload)
-      # get the general id from array of objects
-      general = objects_created.select { |object| object.instance_of?(::General) }.first
-      @file_upload.general_id = general.id
-      @file_upload.save
       redirect_to file_uploads_path
     else
       render :new
